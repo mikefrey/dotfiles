@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+
+var fs = require('fs')
+var path = require('path')
+
+fs.readdir('./src', linkFiles)
+
+function linkFiles(err, files) {
+  if (err) return console.error(err)
+  files.forEach(function(file) {
+    console.log(file)
+    var src = __dirname+'/src/'+file
+    var dest = process.env['HOME']+'/.'+file
+    fs.link(src, dest, function(err) {
+      if (err) return console.error(src, '>>', dest, 'ERROR', err)
+      console.log(src, '>>', dest)
+    })
+  })
+}
+
+
