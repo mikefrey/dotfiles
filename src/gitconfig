@@ -38,6 +38,7 @@
   dsm = !git diff --staged | subl
   # list the files deleted but not committed
   deleted = ls-files --deleted
+  rr = "!git ls-files --deleted | xargs git rm"
   # give the complete details (diff, timestamps, author info) of a given commit
   details = log -n1 -p --format=fuller
   # pipe the diff to textmate
