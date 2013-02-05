@@ -3,19 +3,47 @@
 var fs = require('fs')
 var path = require('path')
 
-fs.readdir('./src', linkFiles)
+var home = process.env['HOME']+'/test/'
 
-function linkFiles(err, files) {
-  if (err) return console.error(err)
+// link files from source
+link('./src', home)
+
+// link private files from dropbox
+link(home+'Dropbox/dotfiles', home)
+
+
+function link(srcDir, destDir) {
+  if (!fs.existsSync(srcDir))
+    return console.log('Skipping', srcDir, '\nSource directory does not exist')
+  if (!fs.existsSync(destDir))
+    return console.log('Skipping', srcDir, '\nDestination directory does not exist')
+
+  var files
+  try {
+    files = fs.readdirSync(srcDir)
+  } catch(err) {
+    return console.error(err)
+  }
+
   files.forEach(function(file) {
-    console.log(file)
-    var src = __dirname+'/src/'+file
-    var dest = process.env['HOME']+'/.'+file
-    fs.link(src, dest, function(err) {
-      if (err) return console.error(src, '>>', dest, 'ERROR', err)
-      console.log(src, '>>', dest)
-    })
+    var src = srcDir+'/'+file
+    var dest = destDir+'.'+file
+    tryLink(src, dest)
   })
+
+}
+
+
+function tryLink(src, dest) {
+  if (fs.existsSync(dest))
+    return console.warn('Skipping', src, '\nDestination file already exists.')
+
+  try {
+    fs.linkSync(src, dest)
+  } catch(err) {
+    return console.error(src, '>>', dest, 'ERROR', err)
+  }
+  return console.log(src, '>>', dest)
 }
 
 
