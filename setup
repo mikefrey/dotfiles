@@ -3,7 +3,7 @@
 var fs = require('fs')
 var path = require('path')
 
-var home = process.env['HOME']+'/test/'
+var home = process.env['HOME']+'/'
 
 // link files from source
 link('./src', home)
