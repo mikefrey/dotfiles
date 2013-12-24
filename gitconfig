@@ -1,12 +1,15 @@
 [user]
-  name = Mike Frey
-  email = mike.frey@tstmedia.com
+	name = Mike Frey
+	email = mike.frey@tstmedia.com
+[github]
+	user = mikefrey
+	token = 494884b48bfd1b88c21f27f175ef1ce9
 [push]
-  default = tracking
+	default = tracking
 [color]
-  status = auto
-  diff = auto
-  branch = auto
+	status = auto
+	diff = auto
+	branch = auto
   ui = auto
 [alias]
   a = add
@@ -15,16 +18,16 @@
   added = diff --cached --name-only
   amend = commit --amend
   ammend = commit --amend
-  br = branch
+	br = branch
   branches-with = branch -a --contains
   branchname = !git branch | grep '^* ' | awk '{ print $2 }'
   brs = branch -a
   c = commit
   changes = "!f() { git log --pretty=format:'* %s' $1..$2; }; f"
-  ci = commit
+	ci = commit
   #cm = commit -m
   cm = "!f() { git commit -m \"$*\"; }; f"
-  co = checkout
+	co = checkout
   d = diff
   dc = diff --cached
   dcm = !git diff --cached | subl
@@ -48,7 +51,7 @@
   rs = rebase --skip
   rr = !git ls-files --deleted | xargs git rm
   s = status
-  st = status
+	st = status
   searchlogs = !git log --oneline | grep
   st = status
   sub = submodule update --init --recursive
@@ -57,7 +60,7 @@
   unstage = reset HEAD
   ur = pull --rebase
 [core]
-  editor = subl -w
+	editor = subl -w
   excludesfile = ~/.gitexcludes
   quotepath = false
   autocrlf = input
